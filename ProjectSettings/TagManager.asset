@@ -41,3 +41,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BackGround
+    uniqueID: 3166490629
+    locked: 0
+  - name: Tilemap
+    uniqueID: 1514562277
+    locked: 0
+  - name: Danger
+    uniqueID: 1121504395
+    locked: 0
+  - name: Enemies
+    uniqueID: 2992574317
+    locked: 0
+  - name: Coins
+    uniqueID: 1618711663
+    locked: 0
+  - name: Player
+    uniqueID: 2653847477
+    locked: 0
