@@ -11,11 +11,11 @@ public class FoldoutMenu : MonoBehaviour
     [SerializeField] List<Transform> waypoints;
     [SerializeField] float speed;
     [SerializeField] bool hidden = false;
+    [SerializeField] GameObject hello;
     bool arrived = false;
 
     public void FollowPath()
     {
-        GameObject hello = Selection.activeGameObject;
         EventSystem.current.SetSelectedGameObject(null);
         if (!hidden)
         {
@@ -26,7 +26,7 @@ public class FoldoutMenu : MonoBehaviour
                 if (transform.position == waypoints[1].position)
                 {
                     arrived = true;
-                    hello.transform.localScale = new Vector3(-1, 1, 1);
+                    hello.transform.localScale = new Vector3(-1, -1, 1);
                 }
             }
             arrived = false;
