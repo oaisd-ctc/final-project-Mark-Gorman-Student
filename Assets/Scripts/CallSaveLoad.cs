@@ -9,6 +9,18 @@ using UnityEngine.UI;
 
 public class CallSaveLoad : MonoBehaviour
 {
+    void Awake()
+    {
+        if (MenuLoading.LoadDataOnStart)
+        {
+            Load();
+        }
+        else
+        {
+            Save();
+        }
+    }
+
     public void Save()
     {
 
@@ -38,8 +50,8 @@ public class CallSaveLoad : MonoBehaviour
 
         QuickSaveWriter.Create("SaveThings")
                        .Write("Score", AddUpgrades.score)
-                       .Write("CoinPlus", AddUpgrades.additive)
-                       .Write("CoinTimes", AddUpgrades.multiplicitive)
+                       .Write("CoinPlus", Static.addAmount)
+                       .Write("CoinTimes", Static.multiplyAmount)
 
                        .Commit();
     }
@@ -50,8 +62,8 @@ public class CallSaveLoad : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         QuickSaveReader.Create("SaveThings")
                        .Read<float>("Score", (r) => { AddUpgrades.score = r; })
-                       .Read<float>("CoinPlus", (r) => { AddUpgrades.additive = r; })
-                       .Read<float>("CoinTimes", (r) => { AddUpgrades.multiplicitive = r; })
+                       .Read<float>("CoinPlus", (r) => { Static.addAmount = r; })
+                       .Read<float>("CoinTimes", (r) => { Static.multiplyAmount = r; })
                        ;
 
 

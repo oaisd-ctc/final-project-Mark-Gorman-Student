@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 25
+  hi: {fileID: 0}
 --- !u!114 &5338299176451290501
 MonoBehaviour:
   m_ObjectHideFlags: 0

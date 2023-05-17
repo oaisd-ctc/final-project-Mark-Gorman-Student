@@ -11,6 +11,13 @@ public class CoinTypeChances : MonoBehaviour
     [SerializeField] int[] coin;
     [SerializeField] public static bool[] deleted = new bool[2];
 
+    private void Awake()
+    {
+        if (MenuLoading.LoadDataOnStart)
+        {
+            Loading();
+        }
+    }
     public void Loading()
     {
         for (int hi = 0; hi <= deleted.Length - 1; hi++)

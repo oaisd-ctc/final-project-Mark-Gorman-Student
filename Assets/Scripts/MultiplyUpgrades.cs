@@ -13,6 +13,13 @@ public class MultiplyUpgrades : MonoBehaviour
     [SerializeField] TextMeshProUGUI[] increment;
     [SerializeField] public static bool[] deleted = new bool[2];
 
+    private void Awake()
+    {
+        if (MenuLoading.LoadDataOnStart)
+        {
+            Loading();
+        }
+    }
     public void Loading()
     {
         for (int hi = 0; hi <= deleted.Length - 1; hi++)
@@ -22,7 +29,7 @@ public class MultiplyUpgrades : MonoBehaviour
                 Destroy(buttons[hi]);
             }
         }
-        increment[0].text = AddUpgrades.multiplicitive.ToString();
+        increment[0].text = Static.multiplyAmount.ToString();
     }
 
     public void MultiplyUpgrade(int button)
@@ -30,10 +37,10 @@ public class MultiplyUpgrades : MonoBehaviour
         int price = cost[button];
         if (AddUpgrades.score > price)
         {
-            AddUpgrades.multiplicitive *= increase[button];
+            Static.multiplyAmount *= increase[button];
             AddUpgrades.score -= price;
             Destroy(buttons[button]);
-            increment[button].text = AddUpgrades.multiplicitive.ToString();
+            increment[button].text = Static.multiplyAmount.ToString();
             deleted[button] = true;
         }
     }

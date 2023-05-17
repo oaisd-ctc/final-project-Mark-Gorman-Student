@@ -9,7 +9,7 @@ public class AddUpgrades : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI text;
     [SerializeField] GameObject[] buttons;
-    public static int[] cost = new int[] { 100, 400 };
+    public static int[] cost = new int[] { 50, 400 };
     [SerializeField] float[] increase;
     [SerializeField] TextMeshProUGUI[] increment;
     [SerializeField] TextMeshProUGUI[] priceText;
@@ -17,14 +17,19 @@ public class AddUpgrades : MonoBehaviour
 
     public static float score = 0f;
     public static float idle = 0f;
-    public static float additive = 0f;
-    public static float multiplicitive = 1f;
 
 
     void Update()
     {
-        score += (idle * multiplicitive);
+        score += (idle * Static.multiplyAmount);
         text.text = "Coins: " + score;
+    }
+    private void Awake()
+    {
+        if (MenuLoading.LoadDataOnStart)
+        {
+            Loading();
+        }
     }
 
     public void Loading()
@@ -32,7 +37,7 @@ public class AddUpgrades : MonoBehaviour
         for (int i = 0; i < priceText.Length; i++)
         {
             priceText[i].text = "Coin Value +" + increase[i] + "\nCost: " + (int)cost[i];
-            increment[0].text = additive.ToString();
+            increment[0].text = Static.addAmount.ToString();
         }
     }
 
@@ -42,13 +47,13 @@ public class AddUpgrades : MonoBehaviour
         int price = cost[button];
         if (score > price)
         {
-            additive += increase[button];
+            Static.addAmount += increase[button];
             score -= price;
             float temp = price;
             temp = temp * 1.1f;
             cost[button] = (int)temp;
             priceText[button].text = "Coin Value +" + increase[button] + "\nCost: " + (int)temp;
-            increment[0].text = additive.ToString();
+            increment[0].text = Static.addAmount.ToString();
         }
     }
 }
